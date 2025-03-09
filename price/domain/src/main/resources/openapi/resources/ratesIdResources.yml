@@ -1,0 +1,37 @@
+get:
+  summary: Get a rate
+  operationId: getRate
+  tags:
+    - getRate
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Response of the finding process
+      content:
+        application/json:
+          schema:
+            type: object
+
+delete:
+  summary: Remove a rate
+  operationId: removeRate
+  tags:
+    - removeRate
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Response of the removing process
+      content:
+        application/json:
+          schema:
+            type: object

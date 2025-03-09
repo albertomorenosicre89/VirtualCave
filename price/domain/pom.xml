@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.alberto.virtualcave</groupId>
+        <artifactId>price</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>domain</artifactId>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.2.28</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <!--<version>7.12.0</version>-->
+                <version>6.6.0</version>
+                <executions>
+                    <execution>
+                        <id>ecommerce</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi/ecommerce.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>com.alberto.virtualcave.generated.api</apiPackage>
+                            <modelPackage>com.alberto.virtualcave.generated.model</modelPackage>
+                            <configOptions>
+                                <!-- Para uar las validaciones de java 17 o más -->
+                                <useJakartaEe>true</useJakartaEe>
+                                <interfaceOnly>true</interfaceOnly>
+                                <!-- Esto quita los metodos generados en la interfaz contengan una _ al principio -->
+                                <delegatePattern>false</delegatePattern>
+                                <!-- Esto quita los metodos generados en la interfaz por defecto-->
+                                <skipDefaultInterface>true</skipDefaultInterface>
+                                <!-- Habilita las anotaciones de validación en las versiones de openapi 7.12.0 aunque no funcionan-->
+                                <!--<useBeanValidation>true</useBeanValidation>
+                                <performBeanValidation>true</performBeanValidation>-->
+                                <additionalModelTypeAnnotations>@lombok.Data
+                                    @lombok.Builder
+                                </additionalModelTypeAnnotations>
+                            </configOptions>
+                            <typeMappings>
+                                <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
+                                <typeMapping>Date=LocalDate</typeMapping>
+                            </typeMappings>
+                            <importMappings>
+                                <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
+                                <importMapping>LocalDate=java.time.LocalDate</importMapping>
+                            </importMappings>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>currency</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi/currency-service-api-rest.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>com.alberto.virtualcave.currency.generated.api</apiPackage>
+                            <modelPackage>com.alberto.virtualcave.currency.generated.model</modelPackage>
+                            <configOptions>
+                                <!-- Para uar las validaciones de java 17 o más -->
+                                <useJakartaEe>true</useJakartaEe>
+                                <interfaceOnly>true</interfaceOnly>
+                                <!-- Esto quita los metodos generados en la interfaz contengan una _ al principio -->
+                                <delegatePattern>false</delegatePattern>
+                                <!-- Esto quita los metodos generados en la interfaz por defecto-->
+                                <skipDefaultInterface>true</skipDefaultInterface>
+                                <!-- Habilita las anotaciones de validación en las versiones de openapi 7.12.0 aunque no funcionan-->
+                                <!--<useBeanValidation>true</useBeanValidation>
+                                <performBeanValidation>true</performBeanValidation>-->
+                                <additionalModelTypeAnnotations>@lombok.Data
+                                    @lombok.Builder
+                                </additionalModelTypeAnnotations>
+                            </configOptions>
+                            <typeMappings>
+                                <typeMapping>OffsetDateTime=LocalDateTime</typeMapping>
+                                <typeMapping>Date=LocalDate</typeMapping>
+                            </typeMappings>
+                            <importMappings>
+                                <importMapping>java.time.OffsetDateTime=java.time.LocalDateTime</importMapping>
+                                <importMapping>LocalDate=java.time.LocalDate</importMapping>
+                            </importMappings>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

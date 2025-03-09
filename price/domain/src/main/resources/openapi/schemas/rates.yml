@@ -1,0 +1,52 @@
+rateUpdated:
+  type: object
+  properties:
+    id:
+      type: integer
+    price:
+      type: number
+      format : double
+  required:
+    - id
+    - price
+
+rateFilter:
+  type: object
+  properties:
+    productId:
+      type: integer
+    brandId:
+      type: integer
+    date:
+      type: string
+      format : date
+  required:
+    - productId
+    - brandId
+    - date
+
+rateNew:
+  type: object
+  properties:
+    productId:
+      type: integer
+    brandId:
+      type: integer
+    startDate:
+      type: string
+      format : date
+    endDate:
+      type: string
+      format : date
+    price:
+      type: number
+      format : double
+    currencyCode:
+      type: string
+  required:
+    - productId
+    - brandId
+    - startDate
+    - endDate
+    - price
+    - currencyCode

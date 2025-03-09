@@ -1,0 +1,59 @@
+post:
+  summary: Insert a new rate
+  operationId: addRate
+  tags:
+    - addRate
+  requestBody:
+    description: Body with the properties
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/rates.yml#/rateNew'
+  responses:
+    '201':
+      description: Response of the creating process
+      content:
+        application/json:
+          schema:
+            type: object
+
+put:
+  summary: Update a rate
+  operationId: updateRate
+  tags:
+    - updateRate
+  requestBody:
+    description: Body with the properties
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/rates.yml#/rateUpdated'
+  responses:
+    '200':
+      description: Response of the updating process
+      content:
+        application/json:
+          schema:
+            type: object
+
+get:
+  summary: Get a rate
+  operationId: getRate
+  tags:
+    - getRate
+  requestBody:
+    description: Body with the properties to filter
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/rates.yml#/rateFilter'
+  responses:
+    '200':
+      description: Response of the finding process in the rate table
+      content:
+        application/json:
+          schema:
+            type: object
